@@ -14,12 +14,16 @@
         }
     */
 
-        .card > * {
+        .card  * {
             grid-area: 1 / 1 / 1 / 1;
-            width: 180px;
+            width: 380px;
             height: 100px;
-            padding: 12px;
+            padding: 40px;
+            margin: 7px;
             border-radius: 8px;
+            font-size: 5ch;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-weight: 300;
             backface-visibility: hidden;
         }
     
@@ -31,6 +35,26 @@
             background: linear-gradient(rgb(127, 106, 83), rgb(156, 132, 104));
             transform: rotateY(180deg);
         }
+
+        .card-back > p {
+            margin: 5px;
+            padding: 0px;
+            width: 120px;
+            height : 40px;
+            font-size: 40px;
+            
+            padding-top: 20px;
+
+        }
+
+        div{
+            margin-bottom: 5px;
+            background-size: cover;
+            background-repeat: no-repeat; 
+            
+        }
+
+
     </style>
 
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -74,13 +98,26 @@
 
 
   <body>
-    <div class="card" >
-      <div class="card-front">ABCDEFG-- !!!</div>
-      <div class="card-back">따라따라..</div>
-    </div>
+
     <div class="card">
-        <div class="card-front">front!!!</div>
-        <div class="card-back">back..!!</div>
+        <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
+        <div class="card-back"><p>digging</p></div>
       </div>    
+
+
+    <div class="card">
+        <div class="card-front" style="background-image: url('https://www.techm.kr/news/photo/201606/img_2137_0.jpg');">   </div>
+        <div class="card-back">computer</div>
+      </div>    
+
+      <div class="card" >
+        <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
+        <div class="card-back">Number.ss..</div>
+      </div>
+      <div class="card">
+          <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
+          <div class="card-back">back..!!</div>
+        </div>    
+
   </body>
 
