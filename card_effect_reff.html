@@ -1,11 +1,37 @@
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <style>
+        html {
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+        }
+
+
+        body { background-color: dodgerblue;
+            height: 100%; 
+            
+        }
+         
+        *   {
+                margin:0;
+                padding:0; 
+                margin-top:2px;
+                margin-left:2px;
+        }
+
         .card {
             display: inline-grid;
             color: white;
-            transition: transform 0.3s;
+            transition: transform 0.4s;
             transform: perspective(800px) rotateY(0deg);
             transform-style: preserve-3d;
+
+            background-color: hsl(51, 73%, 22%);
+            border:1px solid;
+
+            float: left;
+            margin-right: 1px;
+            margin-bottom: 1px;
         }
      
         /*
@@ -13,22 +39,27 @@
             transform: perspective(800px) rotateY(180deg);
         }*/
 
- 
         .card  * {
             grid-area: 1 / 1 / 1 / 1;
-            width: 400px;
-            height: 200px;
-            padding: 40px;
-            margin: 7px;
+            width: 106px;
+            height: 80px;
+            padding: 35px;
+            margin: 5px;
             border-radius: 8px;
             font-size: 5ch;
             font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             font-weight: 300;
-            backface-visibility: hidden;
+            backface-visibility: hidden;            
         }
     
         .card-front {
             background: linear-gradient(rgb(80, 67, 52), rgb(111, 93, 73));
+
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: blue;
+            background-size: 100% 100%;            
         }
     
         .card-back {
@@ -36,22 +67,31 @@
             transform: rotateY(180deg);
         }
 
-        .card-back > p {
-            margin: 5px;
-            padding: 0px;
-            width: 320px;
-            height : 50px;
-            font-size: 40px;
+        .card-front > p {
             
-            padding-top: 20px;
+            margin-left: -25px;
+            padding: 1px;
+            width: 150px;
+            height : 50px;
+            font-size: 30px;
+             
+            position:fixed;
+        }
 
+        .card-back > p {
+            margin: 3px;
+            margin-left: -25px;
+            padding: 0px;
+            width: 50px;
+            height : 50px;
+
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: 500px;
+            font-size: 30px;
         }
 
         div{
-            margin-bottom: 5px;
-            background-size: cover;
             background-repeat: no-repeat; 
-            
         }
 
 
@@ -60,21 +100,32 @@
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         var rotation =0;
-
+        var yrotateCnt = 0;
         $( document ).ready( function() {
-            $( '.card' ).click( function() {
+            $( '.card' ).mousedown( function() {
 
                 //console.log($(this));
                 var angle1 = getRotationDegrees($(this));
                 //console.log(angle1);
                 if(angle1 == 0){
                     rotation =180;
+                    yrotateCnt++;
                 }else{
                     rotation =0;
+                    yrotateCnt--;
                 }
                 
+                if(yrotateCnt > 2){
+                    yrotateCnt =1;
+                    $(".card").css("transform", "rotateY(0deg)");
+                }
+
                 $(this).css("transform", "rotateY("+rotation+"deg)");
+                mdown(this);
+
+                console.log("yrotateCnt", yrotateCnt);
             } );
+ 
         } );
 
         ///현재 설정되어 있는 transform rotateY 정보 리턴 
@@ -105,24 +156,52 @@
 
   <body>
 
-    <div class="card" onmousedown="mdown(this);">
-        <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
-        <div class="card-back"><p>digging</p></div>
-    </div>    
-
-    <div class="card" onmousedown="mdown(this);">
-        <div class="card-front" style="background-image: url('https://www.techm.kr/news/photo/201606/img_2137_0.jpg');">   </div>
-        <div class="card-back"><p>computer</p></div>
-    </div>    
-
-    <div class="card" onmousedown="mdown(this);">
-        <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
-        <div class="card-back"><p>Number.ss..</p></div>
+    <div style="height: 80px;padding:4px; background-color: yellow;width: 95%; margin-bottom: 5px; margin-top: 9px; text-align: center;" >
+        <P style="
+                    margin-top: 15px;
+                    font-size: 40px; 
+                    font-weight: 800;                     
+                    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; ">ability</P>
     </div>
-    <div class="card" onmousedown="mdown(this);">
-        <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
-        <div class="card-back"><p>back..!!</p></div>
+
+    <div class="card">
+        <div class="card-front" style="background-image: url('https://i.ytimg.com/vi/UTup8U1Gzj8/maxresdefault.jpg');"></div>
+        <div class="card-back"><p>absorb</p></div>
     </div>    
 
+    <div class="card" >
+        <div class="card-front"><p>흡수하다</p></div>
+        <div class="card-back"><p>absorb</p></div>
+    </div>    
+
+    <div class="card" >
+        <div class="card-front" style="background-image: url('https://images-tv.adobe.com/avp/vr/b758b4c4-2a74-41f4-8e67-e2f2eab83c6a/8a3bb981-2612-447a-a7d3-5c860deb4588/84ef637e_1920x1080.jpg'); "></div>
+        <div class="card-back"><p>along</p></div>
+    </div>
+    <div class="card">
+        <div class="card-front"><p>능력</p> </div>
+        <div class="card-back"><p>ability</p></div>
+    </div>    
+
+    <div class="card">
+        <div class="card-front" style="background-image: url('https://www.shutterstock.com/image-vector/breakable-fragile-material-packaging-symbol-260nw-781068547.jpg'); ">   </div>
+        <div class="card-back"><p>breakable</p></div>
+    </div>    
+
+    <div class="card" >
+        <div class="card-front"> <p>깨지기 쉬운</p>  </div>
+        <div class="card-back"><p>breakable</p></div>
+    </div>    
+
+    <div class="card" >
+        <div class="card-front" style="background-image: url('https://www.jobbank.gc.ca/themes-jb/images/quiz/quiz_abilities.svg'); ">   </div>
+        <div class="card-back"><p>ability</p></div>
+    </div>
+    <div class="card">
+        <div class="card-front"><p>군중</p></div>
+        <div class="card-back"><p>crowd</p></div>
+    </div>    
+  
+ 
   </body>
 
