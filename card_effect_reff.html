@@ -1,0 +1,86 @@
+<head>
+    <style>
+        .card {
+            display: inline-grid;
+            color: white;
+            transition: transform 0.3s;
+            transform: perspective(800px) rotateY(0deg);
+            transform-style: preserve-3d;
+        }
+    
+        /*
+        .card {
+            transform: perspective(800px) rotateY(180deg);
+        }
+    */
+
+        .card > * {
+            grid-area: 1 / 1 / 1 / 1;
+            width: 180px;
+            height: 100px;
+            padding: 12px;
+            border-radius: 8px;
+            backface-visibility: hidden;
+        }
+    
+        .card-front {
+            background: linear-gradient(rgb(80, 67, 52), rgb(111, 93, 73));
+        }
+    
+        .card-back {
+            background: linear-gradient(rgb(127, 106, 83), rgb(156, 132, 104));
+            transform: rotateY(180deg);
+        }
+    </style>
+
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        var rotation =0;
+
+        $( document ).ready( function() {
+            $( '.card' ).click( function() {
+
+                var angle1 = getRotationDegrees($(this));
+                //console.log(angle1);
+                if(angle1 == 0){
+                    rotation =180;
+                }else{
+                    rotation =0;
+                }
+                
+                $(this).css("transform", "rotateY("+rotation+"deg)");
+            } );
+        } );
+
+        ///현재 설정되어 있는 transform rotateY 정보 리턴 
+        function getRotationDegrees(obj) {
+            var matrix = obj.css("-webkit-transform") ||
+            obj.css("-moz-transform")    ||
+            obj.css("-ms-transform")     ||
+            obj.css("-o-transform")      ||
+            obj.css("transform");
+            if(matrix !== 'none') {
+                var values = matrix.split('(')[1].split(')')[0].split(',');
+                var a = values[0];
+                var b = values[1];
+                var angle = Math.round(Math.atan2(b, a) * (180/Math.PI));
+            } else { var angle = 0; }
+            return (angle < 0) ? angle + 360 : angle;
+        }
+
+    </script>
+
+</head>
+
+
+  <body>
+    <div class="card" >
+      <div class="card-front">ABCDEFG-- !!!</div>
+      <div class="card-back">따라따라..</div>
+    </div>
+    <div class="card">
+        <div class="card-front">front!!!</div>
+        <div class="card-back">back..!!</div>
+      </div>    
+  </body>
+
