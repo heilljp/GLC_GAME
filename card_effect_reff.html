@@ -7,17 +7,17 @@
             transform: perspective(800px) rotateY(0deg);
             transform-style: preserve-3d;
         }
-    
+     
         /*
-        .card {
+        .card:hover {
             transform: perspective(800px) rotateY(180deg);
-        }
-    */
+        }*/
 
+ 
         .card  * {
             grid-area: 1 / 1 / 1 / 1;
-            width: 380px;
-            height: 100px;
+            width: 400px;
+            height: 200px;
             padding: 40px;
             margin: 7px;
             border-radius: 8px;
@@ -39,8 +39,8 @@
         .card-back > p {
             margin: 5px;
             padding: 0px;
-            width: 120px;
-            height : 40px;
+            width: 320px;
+            height : 50px;
             font-size: 40px;
             
             padding-top: 20px;
@@ -64,6 +64,7 @@
         $( document ).ready( function() {
             $( '.card' ).click( function() {
 
+                //console.log($(this));
                 var angle1 = getRotationDegrees($(this));
                 //console.log(angle1);
                 if(angle1 == 0){
@@ -92,6 +93,11 @@
             return (angle < 0) ? angle + 360 : angle;
         }
 
+
+        function mdown(divs){
+            console.log($(divs).children('div.card-back').children('p').html());  //영문찾기
+        }
+ 
     </script>
 
 </head>
@@ -99,25 +105,24 @@
 
   <body>
 
-    <div class="card">
+    <div class="card" onmousedown="mdown(this);">
         <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
         <div class="card-back"><p>digging</p></div>
-      </div>    
+    </div>    
 
-
-    <div class="card">
+    <div class="card" onmousedown="mdown(this);">
         <div class="card-front" style="background-image: url('https://www.techm.kr/news/photo/201606/img_2137_0.jpg');">   </div>
-        <div class="card-back">computer</div>
-      </div>    
+        <div class="card-back"><p>computer</p></div>
+    </div>    
 
-      <div class="card" >
+    <div class="card" onmousedown="mdown(this);">
         <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
-        <div class="card-back">Number.ss..</div>
-      </div>
-      <div class="card">
-          <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
-          <div class="card-back">back..!!</div>
-        </div>    
+        <div class="card-back"><p>Number.ss..</p></div>
+    </div>
+    <div class="card" onmousedown="mdown(this);">
+        <div class="card-front" style="background-image: url('https://dimg.donga.com/ugc/CDB/WEEKLY/Article/5a/53/0d/dd/5a530ddd198cd2738de6.jpg');">   </div>
+        <div class="card-back"><p>back..!!</p></div>
+    </div>    
 
   </body>
 
